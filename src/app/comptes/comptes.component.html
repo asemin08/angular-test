@@ -1,0 +1,4 @@
+<ul class="list-group">
+    <li>object : {{comptes}}</li>
+    <li *ngFor="let compte of comptes;" class="list-group-item">compte id : {{compte.code}} -- solde : {{compte.solde}} -- type : {{compte.type | lowercase}} -- date de création : {{compte.dateCreation | date:'yy MMMM EEEE d'}}</li>
+</ul>
