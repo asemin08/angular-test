@@ -16,10 +16,11 @@ import { CompteService } from './services/compte.services';
 import { AuthService } from './services/auth.service';
 import { SimgleAppareilComponent } from './simgle-appareil/simgle-appareil.component';
 import { ErrorComponent } from './error/error.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 const appRoutes: Routes = [
-  {path: 'appareils', component: ApparailViewComponent},
-  {path: 'appareils/:id', component: SimgleAppareilComponent},
+  {path: 'appareils', canActivate: [AuthGuard], component: ApparailViewComponent},
+  {path: 'appareils/:id', canActivate: [AuthGuard], component: SimgleAppareilComponent},
   {path: 'auth', component: AuthComponent},
   {path: 'compte', component: ComptesComponent},
   {path: '', component: ApparailViewComponent},
@@ -48,7 +49,8 @@ const appRoutes: Routes = [
   providers: [
     AppareilService,
     CompteService,
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })
