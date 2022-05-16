@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MonPremierComponent } from './mon-premier/mon-premier.component';
 import { AppareilComponent } from './appareil/appareil.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppareilService } from './services/appareil.services';
 import { AuthComponent } from './auth/auth.component';
 import { ApparailViewComponent } from './apparail-view/apparail-view.component';
@@ -17,11 +17,13 @@ import { AuthService } from './services/auth.service';
 import { SimgleAppareilComponent } from './simgle-appareil/simgle-appareil.component';
 import { ErrorComponent } from './error/error.component';
 import { AuthGuard } from './services/auth-guard.service';
+import { AddCompteTemplateComponent } from './add-compte-template/add-compte-template.component';
 
 const appRoutes: Routes = [
   {path: 'appareils', canActivate: [AuthGuard], component: ApparailViewComponent},
   {path: 'appareils/:id', canActivate: [AuthGuard], component: SimgleAppareilComponent},
   {path: 'auth', component: AuthComponent},
+  {path: 'addCompte', component: AddCompteTemplateComponent},
   {path: 'compte', component: ComptesComponent},
   {path: '', component: ApparailViewComponent},
   {path: 'not-found', component: ErrorComponent},
@@ -38,13 +40,15 @@ const appRoutes: Routes = [
     ComptesComponent,
     SimgleAppareilComponent,
     ErrorComponent,
+    AddCompteTemplateComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [
     AppareilService,
