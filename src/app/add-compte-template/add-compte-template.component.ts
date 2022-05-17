@@ -10,8 +10,11 @@ import { CompteService } from 'src/app/services/compte.services';
 })
 export class AddCompteTemplateComponent implements OnInit {
 
+  successMessage: String | undefined = "";
+  errorMessage: String | undefined = "";
+
   compteForm = this.fb.group({
-    solde: ['', Validators.required],
+    solde: ['', [Validators.required, Validators.pattern("^[0-9]*$")]],
     type: ['',Validators.required],
   });
 
@@ -31,9 +34,13 @@ export class AddCompteTemplateComponent implements OnInit {
       console.log(compte);
       this.compteService.addComptes(compte).subscribe({
         next: (value) => {
-          error : (error: string) => {
-            console.log(error);
-          }
+            this.errorMessage = "";
+            this.successMessage = "Le compte à été créer";
+        },
+        error : (error) => {
+          this.successMessage = "";
+          this.errorMessage = error;
+          console.log(error);
         }
       });
       this.compteForm.reset();

@@ -18,7 +18,7 @@ const httpOptions = {
 
 
 export class CompteService {
-    private url = 'http://localhost:808eze0/microservice-test/';
+    private url = 'http://localhost:8080/microservice-test/';
     constructor(private http: HttpClient) { }
 
     getComptes(): Observable<compte[]> {
