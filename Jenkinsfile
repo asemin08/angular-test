@@ -17,7 +17,7 @@ pipeline {
         stage('Docker build Image') {
             steps{
                 script{
-                    sh "docker build --no-cache -f Dockerfile ."
+                    sh "docker build --no-cache -t verkeur08/angular-test:latest -f Dockerfile ."
                 }
             }
         }
@@ -30,7 +30,7 @@ pipeline {
         }
         stage('Docker push') {
             steps {
-                sh "docker push verkeur08/angular-test"
+                sh "docker push verkeur08/angular-test:latest"
             }
         }
     }
